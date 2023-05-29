@@ -1,0 +1,16 @@
+<div class="question">
+  <h3>{{question.question}}</h3>
+  <p *ngIf="question.code">{{question.code}}</p>
+</div>
+<ul>
+  <li class="flex" *ngFor="let option of options.controls; let i = index">
+    <input type="checkbox" [id]="'option_' + i" [(ngModel)]="option.value.userAnswer" [ngModelOptions]="{standalone: true}">
+    <label [for]="'option_' + i">{{ option.value.text }}</label>
+  </li>
+</ul>
+<button class="btn" [disabled]="answerForm.invalid" (click)="saveAnswer()">Відповісти</button>
+
+
+
+
+

@@ -1,0 +1,80 @@
+.create-page {
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  h2 {
+    font-size: 30rem;
+    padding-bottom: 20rem;
+  }
+  ul {
+    list-style: inside;
+  }
+  p, li, ul {
+    color: #DEDEDE;
+    padding: 10rem 0;
+    font-size: 12rem;
+    font-weight: 300;
+  }
+  input {
+    margin-top: 5rem;
+    margin-bottom: 10rem;
+  }
+  label {
+    color: #DEDEDE;
+    padding: 5rem;
+  }
+  .card {
+    margin: 20rem 0px;
+  }
+  .code-btn {
+    background: transparent;
+    text-decoration: underline;
+    color: var(--success-color);
+    font-weight: 600;
+    border: none;
+    font-size: 14rem;
+  }
+}
+
+.wrapper-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 20rem;
+
+  .group-inputs {
+    width: 100%;
+    padding-bottom: 100rem;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 30rem;
+    .btn {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+    }
+  }
+}
+.group-input {
+  .flex {
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 20rem;
+    .form-control {
+      width: 50%;
+    }
+  }
+}
+.option-wrap {
+  display: flex;
+}
+.btn {
+  margin: 15rem 0;
+
+}
+
+.submit {
+  background-color: var(--danger-color);
+}

@@ -1,0 +1,63 @@
+.main-layout {
+  min-height: 100%;
+  display: flex;
+  font-size: 14rem;
+}
+.about-me {
+  position: fixed;
+  height: 100%;
+  display: block;
+  background-color: var(--dark-color);
+  box-shadow: 5rem 0 15rem rgba(5, 5, 5, 0.1);
+  text-align: center;
+  width: 250rem;
+  p {
+    padding: 20rem 10rem;
+    font-size: 14rem;
+    line-height: 18rem;
+  }
+  a {
+    background-color: var(--danger-color);
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 400;
+  }
+  small{
+    font-weight: 300;
+    font-size: 12rem;
+    color: #DEDEDE;
+  }
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.content {
+  width: calc(100% - 250rem);
+  margin-left: 250rem;
+  @media (max-width: 768px) {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.photos {
+  position: relative;
+  margin-bottom: 120rem;
+}
+.my-photo {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 60%;
+  margin: 0 auto;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 7rem 20rem rgba(0, 0, 0, 0.25);
+  img {
+    border-radius: 50%;
+  }
+}

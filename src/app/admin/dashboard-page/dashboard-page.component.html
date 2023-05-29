@@ -1,0 +1,38 @@
+<ng-container *ngIf="tests.length; else loading">
+    <div class="container">
+        <div>
+            <input type="text" placeholder="Знайти пост..." [(ngModel)]="searchStr">
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Назва</th>
+                    <th>Мови програмування що використовуються</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let test of tests | searchTests:searchStr; let idx = index">
+                    <td>{{idx +1}}</td>
+                    <td>{{test.title}}</td>
+                    <td>{{test.testFilter}}</td>
+                    <td>
+                        <button
+                                class="btn"
+                                [routerLink]="['/admin', 'test', test.id, 'edit']"
+                        >Редагувати</button>
+                        <a (click)="remove(test.id)">Видалити</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-container>
+
+<ng-template #loading>
+    <div class='line-container'>
+        <div class='line'></div>
+        <div class='line--blur'></div>
+    </div>
+</ng-template>

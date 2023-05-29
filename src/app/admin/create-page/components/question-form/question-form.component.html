@@ -1,0 +1,47 @@
+<div
+        [ngClass]="{invalid: isValidQuestion() && updateQuestion.question !== ''}"
+        class="card" [formGroup]="questionForm">
+    <button class="btn delete" (click)="removeQuestion()"
+            [disabled]="">х
+    </button>
+    <div class="form-control"
+         [ngClass]="{ invalid: formControls['question'].touched && formControls['question'].invalid }">
+        <label for="question">Назва питання {{ idxQuestion + 1 }}:</label>
+        <input id="question" type="text" formControlName="question" placeholder="{{updateQuestion.question}}">
+        <div *ngIf="formControls['question']?.touched && formControls['question']?.invalid" class="validation">
+            <small *ngIf="formControls['question']?.errors?.['required']">
+                Введіть назву питання
+            </small>
+        </div>
+    </div>
+
+    <div class="form-control"
+         [ngClass]="{ invalid: formControls['code'].touched && formControls['code'].invalid }">
+        <label for="code">Введіть шмоточок коду якщо він є:</label>
+        <input id="code" type="text" formControlName="code" placeholder="{{updateQuestion.code}}">
+        <div *ngIf="formControls['code']?.touched && formControls['code']?.invalid" class="validation">
+            <small *ngIf="formControls['code']?.errors?.['required']">
+                Введіть код
+            </small>
+        </div>
+    </div>
+
+    <div formArrayName="options">
+        <p>Введіть мінімум два варіанти відповіді, і відзначте всі вірні варіанти галочкою, будьте дуже уважні</p>
+        <ul>
+            <li *ngFor="let option of formControls['options'].value">
+                <label>Вариант відповіді:</label>
+                <div class="option-wrap">
+                    <input type="checkbox" [(ngModel)]="option.answer" [ngModelOptions]="{standalone: true}">
+                    <input type="text" [(ngModel)]="option.text" [ngModelOptions]="{standalone: true}">
+                    <button class="remove btn"
+                            [disabled]="formControls['options'].value.length < MIN_OPTIONS_COUNT"
+                            (click)="removeOption(option)">-
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <button class="code-btn" (click)="addOption()">Додати варіант відповіді</button>
+    <button class="btn submit" [disabled]="!isValidQuestion()" (click)="saveQuestion()">Зберегти</button>
+</div>

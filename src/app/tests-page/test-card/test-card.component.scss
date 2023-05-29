@@ -1,0 +1,38 @@
+.card {
+  margin-bottom: 20rem;
+  padding: 25rem;
+}
+h2 {
+  padding-bottom: 15rem;
+  font-weight: 500;
+  font-size: 18rem;
+  line-height: 21rem;
+  color: white;
+}
+p {
+  padding-bottom: 15rem;
+  font-weight: 400;
+  font-size: 14rem;
+  line-height: 21rem;
+  color: #D2D2D2;
+}
+small {
+  font-weight: 400;
+  font-size: 12rem;
+  line-height: 14rem;
+  color: #828282;
+}
+.flex {
+  align-items: center;
+  justify-content: space-between;
+  gap: 10rem;
+}
+a {
+  font-weight: 400;
+  font-size: 14rem;
+  white-space: nowrap;
+  line-height: 16px;
+  text-align: right;
+  color: #107EFF;
+}
+

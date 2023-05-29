@@ -1,0 +1,97 @@
+<ng-container *ngIf="updatedTest; else loading" >
+    <div class="container">
+        <form class="create-page" [formGroup]="testForm">
+            <ng-container *ngIf="updatedTest.id; else create">
+                <h2>Редагування тесту "{{updatedTest.title}}"</h2>
+                <p>Для редагування тесту, потрібно обов'язково перевірити чи заповненны поля: назва тету, опис, мови програмування що використовуються, та почергово і уважно перевірити питання</p>
+                <ul> Карточки з питаннями:
+                    <li> <strong>Обов'язково до заповнення</strong> назва питання, міннімум два варінти відповіді, та міннімум одна помічена вірна відповідь <i>(щоб помітити вірну відповідь поруч з варінтом потрібно поставити галочку)</i></li>
+                    <li> Після редагування питання <strong>обов'язково натисніть кнопку зберегти питання</strong></li>
+                </ul>
+
+            </ng-container>
+            <ng-template #create>
+                <h2>Створення нового тесту</h2>
+                <p>Для створення нового тесту, потрібно обов'язково заповнити поля: назва тету, опис, мови програмування що використовуються, та почергово і уважно додавати питання</p>
+                <ul> Карточки з питаннями:
+                    <li> <strong>Обов'язково до заповнення</strong> назва питання, міннімум два варінти відповіді, та міннімум одна помічена вірна відповідь <i>(щоб помітити вірну відповідь поруч з варінтом потрібно поставити галочку)</i></li>
+                    <li> Після заповнення кожного питання <strong>обов'язково натисніть кнопку зберегти питання</strong>, або якщо ви внесли якісь зміни у питання також додатково натисність кнопку зберегти</li>
+                </ul>
+            </ng-template>
+            <div class="wrapper-inputs">
+                <div class="group-input card">
+                    <div class="flex">
+                        <div
+                                class="form-control"
+                                [ngClass]="{invalid: formControls['title'].touched && formControls['title'].invalid}"
+                        >
+                            <label for="title">Назва теста:</label>
+                            <input id="title" type="text" formControlName="title">
+                            <div *ngIf="formControls['title'].touched && formControls['title'].invalid" class="validation">
+                                <small
+                                        *ngIf="formControls['title'].errors?.['required']"
+                                >
+                                    Введіть назву теста
+                                </small>
+                            </div>
+                        </div>
+
+                        <div
+                                class="form-control"
+                                [ngClass]="{invalid: formControls['testFilter'].touched && formControls['testFilter'].invalid}"
+                        >
+                            <label for="testFilter">Мови програмування які використувуються у тесті:</label>
+                            <input id="testFilter" type="text" formControlName="testFilter">
+                            <div *ngIf="formControls['testFilter'].touched && formControls['testFilter'].invalid" class="validation">
+                                <small
+                                        *ngIf="formControls['testFilter'].errors !== null && formControls['testFilter'].errors?.['required']"
+                                >
+                                    Введіть мови програмування які використувуються у тесті
+                                </small>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div
+                            class="form-control"
+                            [ngClass]="{invalid: formControls['description'].touched && formControls['description'].invalid}"
+                    >
+                        <label for="description">Опис теста:</label>
+                        <input id="description" type="text" formControlName="description">
+                        <div *ngIf="formControls['description'].touched && formControls['description'].invalid" class="validation">
+                            <small
+                                    *ngIf="formControls['description'].errors !== null && formControls['description'].errors?.['required']"
+                            >
+                                Введіть опис теста
+                            </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="group-inputs">
+                    <div class="wrapper-cards" *ngFor="let question of updatedTest.questions; let i = index">
+                        <app-question-form
+                                [question]="question"
+                                [idxQuestion]="i"
+                                (questionEmitter)="updateQuestion($event)"
+                                (removeEmitter)="removeQuestion(question.id)"
+                        />
+                        <button *ngIf="(updatedTest.questions.length - 1) === i" class="btn" (click)="addQuestion()">Додати питання</button>
+                    </div>
+                </div>
+            </div>
+            <button
+                class="btn submit"
+                type="submit"
+                (click)="submitTest()"
+                [disabled]="!isValid()"
+            >{{ updatedTest.id ? 'Оновити' : 'Створити' }} тест</button>
+        </form>
+    </div>
+</ng-container>
+<ng-template #loading>
+    <div class='line-container'>
+        <div class='line'></div>
+        <div class='line--blur'></div>
+    </div>
+</ng-template>

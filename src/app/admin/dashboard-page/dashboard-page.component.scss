@@ -1,0 +1,28 @@
+table {
+  width: 100%;
+  border: none;
+  border-collapse: collapse;
+  margin-top: 30rem;
+}
+th {
+  padding: 15rem;
+  font-size: 18rem;
+  background: var(--dark-color);
+  text-align: left;
+}
+td {
+  padding: 10rem;
+}
+td {
+  margin-bottom: 10rem;
+}
+.btn {
+  margin-right: 15rem;
+}
+a {
+  cursor: pointer;
+  transition: color .4s ease;
+  &:hover {
+    color: var(--danger-color);
+  }
+}

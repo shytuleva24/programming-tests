@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="card-header">
+    <h2>{{test.title}}</h2>
+  </div>
+  <div class="card-body">
+    <p>{{test.description}}</p>
+  </div>
+  <div class="flex">
+    <small>Мови програмування що використовуються: {{test.testFilter}}</small>
+    <a
+            [routerLink]="['/test', test.id]"
+    >почати тест</a>
+  </div>
+</div>

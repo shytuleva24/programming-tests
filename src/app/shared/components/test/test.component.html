@@ -1,0 +1,70 @@
+<ng-container  *ngIf="test$ | async as test; else loading">
+  <div class="container">
+    <div class="card-header flex">
+      <h2>{{test.title}}</h2>
+      <a [routerLink]="['/tests']">повернутись</a>
+    </div>
+    <div class="card-body">
+      <p>{{test.description}}</p>
+    </div>
+    <small>Мови програмування що використовуються: {{test.testFilter}}</small>
+    <div class="test-line"></div>
+    <div class="progress flex">
+      <span *ngFor="let question of test.questions; let idx = index"
+            [class.selected]="selectedQuestionIndex === idx"
+            [class.correct]="answeredQuestions[idx]"
+            [class.incorrect]="!answeredQuestions[idx]"
+            [class.completed]="answeredQuestions[idx] !== null"
+            (click)="goToQuestion(idx)"
+      ></span>
+    </div>
+    <div class="card"
+              *ngIf="!showResults"
+    >
+      <div
+              *ngFor="let question of test.questions; let idx = index"
+      >
+        <p *ngIf="selectedQuestionIndex === idx">Питання №{{idx + 1}}</p>
+        <app-question
+                *ngIf="selectedQuestionIndex === idx"
+                [question]="question"
+                (userAnswersEmitter)="updateQuestion($event)"
+        />
+      </div>
+    </div>
+      <div class="card result"
+            *ngIf="showResults"
+      >
+        <h3>Вітаю! Ви завершили тест.</h3>
+        <p *ngIf="trueCount">Ваш успіх проходження тесту складає {{ Math.round((trueCount / test.questions.length) * 100) }}%</p>
+        <p *ngIf="!trueCount">Нажаль ви не надали жодної вірної відповіді, та не засмучуйтесь у Вас все попреду.</p>
+        <ul>
+          <strong>Ваш результат:</strong>
+          <li> - кількість питань: {{test.questions.length}}</li>
+          <li *ngIf="trueCount"> - правильних відповідей: {{trueCount}}</li>
+          <li *ngIf="falseCount"> - неправильних відповідей: {{falseCount}}</li>
+        </ul>
+        <ul *ngIf="falseCount">
+          <strong >Питання на які ви відповіли неправильно:</strong>
+          <li *ngFor="let wrongAnswer of wrongAnswers">
+              - {{wrongAnswer}};
+          </li>
+        </ul>
+
+        <p *ngIf="!falseCount">Вітаю! Ви успішно пройшли тест без жодної помилки. Ваше досягнення вражає! Ваші знання та навички по темі <strong>"{{test.title}}"</strong> є винятковими. Такий результат свідчить про вашу високу компетентність і чудове розуміння матеріалу. Чудова робота! Продовжуйте розвиватися і прагнути до нових вершин!</p>
+        <p *ngIf="falseCount">Продовжуйте розвивати свої навички та поглиблювати знання в обраній галузі.</p>
+        <p>Дякуємо за участь у тесті. Бажаємо вам подальших успіхів!</p>
+      </div>
+  </div>
+</ng-container>
+<ng-template #loading>
+  <div class='line-container'>
+    <div class='line'></div>
+    <div class='line--blur'></div>
+  </div>
+
+  <div class='circle-container'>
+    <div class='circle'></div>
+    <div class='circle--blur'></div>
+  </div>
+</ng-template>

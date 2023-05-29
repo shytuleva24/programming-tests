@@ -1,0 +1,55 @@
+<div
+        class="container"
+        *ngIf="(tests$ | async) as tests; else loading"
+>
+  <div class="tests">
+    <input class="search-test"
+           type="text"
+           placeholder="Пошук по тестам..."
+           [(ngModel)]="searchStr"
+           (input)="onSearchInputChange()"
+    >
+    <div class="test-container">
+      <app-test-card
+              *ngFor="let test of paginate()"
+              [test]="test"
+      />
+    </div>
+  </div>
+  <ng-container *ngIf="totalPages > 1">
+    <div class="pagination flex">
+      <button
+              class="pagination-btn"
+              (click)="changePage('previous', 0)"
+              [disabled]="currentPage === 1"
+      ><<</button>
+      <button
+              class="pagination-btn"
+              [ngClass]="{ 'active': currentPage === 1 }"
+              (click)="changePage('goTo', 1)"
+      >1</button>
+      <button
+              class="pagination-btn"
+              *ngFor="let page of getPagesToShow()"
+              [ngClass]="{ 'active': page.isActive }"
+              (click)="changePage('goTo', Number(page.value))"
+      >{{ page.value }}</button>
+      <button
+              class="pagination-btn"
+              (click)="changePage('goTo', totalPages)"
+              [ngClass]="{ 'active': currentPage === totalPages }"
+      >{{ totalPages }}</button>
+      <button
+              class="pagination-btn"
+              (click)="changePage('next', 0)"
+              [disabled]="currentPage === totalPages"
+      >>></button>
+    </div>
+  </ng-container>
+</div>
+<ng-template #loading>
+  <div class='line-container'>
+    <div class='line'></div>
+    <div class='line--blur'></div>
+  </div>
+</ng-template>

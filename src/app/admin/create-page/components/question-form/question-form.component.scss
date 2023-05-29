@@ -1,0 +1,76 @@
+p {
+  padding: 30rem 0;
+  font-weight: 500;
+}
+button {
+  margin-top: 5rem;
+}
+input {
+  margin-top: 5rem;
+}
+input[type='checkbox'] {
+  width: 20rem;
+  height: 20rem;
+  margin: auto 10rem;
+}
+label {
+  color: #DEDEDE;
+  padding: 5rem;
+}
+.card {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  border: 1px solid transparent;
+  transition: all .3s ease;
+}
+.card.invalid {
+  border: 1px solid var(--danger-color);
+}
+.delete {
+  position: absolute;
+  padding: 8rem 12rem;
+  border-radius: 2rem;
+  right: 10rem;
+  top: 6rem;
+  background-color: var(--danger-color);
+}
+.code-btn {
+  margin: 20rem 0;
+  background: transparent;
+  text-decoration: underline;
+  color: var(--success-color);
+  font-weight: 600;
+  border: none;
+  font-size: 14rem;
+}
+
+.submit {
+  width: 100%;
+  margin-top: 30rem;
+}
+.remove {
+  padding: 5rem;
+  background: var(--danger-color);
+  border-radius: 5rem;
+}
+.wrapper-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 20rem;
+  .group-input {
+    width: 100%;
+  }
+}
+.option-wrap {
+  display: flex;
+}
+.wrap {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+

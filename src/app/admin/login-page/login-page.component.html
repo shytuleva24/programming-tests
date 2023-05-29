@@ -1,0 +1,60 @@
+<div class="container">
+    <form class="login-page" [formGroup]="form" (ngSubmit)="submit()">
+        <h2>Увійти до панелі адміністратора</h2>
+        <div class="alert" *ngIf="auth.error$ | async as error">
+            {{error}}
+        </div>
+        <div class="content">
+            <div
+                    class="form-control"
+                    [ngClass]="{invalid: formControls['email'].touched && formControls['email'].invalid}"
+            >
+                <label for="email">Email:</label>
+                <input id="email" type="email" formControlName="email">
+                <div *ngIf="formControls['email'].touched && formControls['email'].invalid" class="validation">
+                    <small
+                            *ngIf="formControls['email'].errors !== null && formControls['email'].errors?.['required']"
+                    >
+                        Введіть електронну пошту
+                    </small>
+                    <small *ngIf="formControls['email'].errors?.['email']">
+                        Введіть корректну електронну пошту
+                    </small>
+                </div>
+            </div>
+
+            <div
+                    class="form-control"
+                    [ngClass]="{invalid: formControls['password'].touched && formControls['password'].invalid}"
+            >
+                <label for="password">Пароль:</label>
+                <input id="password" type="password" formControlName="password">
+        <!--            <pre>{{form.get('password')?.errors?.['minlength'] | json}}</pre>-->
+                <div
+                        class="validation"
+                        *ngIf="formControls['password'].touched && formControls['password'].invalid"
+                >
+                    <small
+                            *ngIf="formControls['password'].errors !== null && formControls['password'].errors?.['required']"
+                    >
+                        Введіть пароль
+                    </small>
+
+                    <small
+                            *ngIf="formControls['password'].errors !== null && formControls['password'].errors?.['minlength']"
+                    >
+                        Пароль повинен бути не менше
+                        {{formControls['password'].errors['minlength']['requiredLength']}}
+                        символів.
+                    </small>
+                </div>
+            </div>
+        </div>
+
+        <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="form.invalid || submitted"
+        >Увійти</button>
+    </form>
+</div>

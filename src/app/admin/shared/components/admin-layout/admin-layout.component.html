@@ -1,0 +1,22 @@
+<app-alert [delay]="4000"/>
+
+<nav class="navbar admin-nav flex">
+    <a routerLink="/">Головна</a>
+    <ul class='flex' *ngIf="auth.isAuthenticated()">
+        <li routerLinkActive="active">
+            <a [routerLink]="['/admin', 'dashboard']">Панель адміністратора</a>
+        </li>
+        <li routerLinkActive="active">
+            <a [routerLink]="['/admin', 'create']">Створити</a>
+        </li>
+        <li>
+            <a href="#" (click)="logout($event)">Вийти</a>
+        </li>
+    </ul>
+</nav>
+<div class="content-site">
+    <router-outlet />
+
+</div>
+
+

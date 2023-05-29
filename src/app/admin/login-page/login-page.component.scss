@@ -1,0 +1,41 @@
+.login-page {
+  max-width: 600rem;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  h2 {
+    font-size: 25rem;
+  }
+  .alert {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 40rem;
+    background-color: var(--danger-color);
+    padding: 10rem;
+  }
+  .content {
+    padding: 30rem 0;
+  }
+  input {
+    margin-top: 5rem;
+  }
+  label {
+    color: #DEDEDE;
+    padding: 5rem;
+  }
+}
+.form-control {
+  margin: 40rem 0;
+  position: relative;
+  .validation {
+    position: absolute;
+    top: 100%;
+    left: 5rem;
+    display: inline-block;
+    color: var(--danger-color);
+    font-size: 12rem;
+    padding: 10rem 0;
+  }
+}

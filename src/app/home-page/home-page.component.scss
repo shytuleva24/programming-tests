@@ -1,0 +1,41 @@
+.main-info {
+  height: 100%;
+  padding: 30rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  h1 {
+    font-size: 34rem;
+    line-height: 150%;
+    //padding: 10rem 0;
+  }
+  p {
+    font-weight: 400;
+    font-size: 12rem;
+    max-width: 50%;
+    padding: 5rem 0;
+  }
+  button {
+    margin-top: 10rem;
+    font-size: 14rem;
+    padding: 10rem 20rem;
+  }
+  .flex {
+    height: 95%;
+    gap: 60rem;
+    position: relative;
+  }
+}
+//.maim-text {
+//  margin: 60rem 0;
+//}
+.img-wrap {
+  position: absolute;
+  right: 30rem;
+  width: 45%;
+  bottom: -5rem;
+
+}
+
+

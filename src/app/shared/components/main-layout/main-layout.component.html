@@ -1,0 +1,31 @@
+<div class="main-layout">
+    <div class="about-me">
+        <div class="photos">
+            <img class="bg-photo" src="assets/img/bgPhoto.jpg" alt="">
+            <img class='my-photo' src="assets/img/myPhoto.jpg" alt="">
+        </div>
+        <h2>Ольга Шутильова</h2>
+        <small>front-end розробник</small>
+        <p>Вітаю на моєму сайті тестування мов програмування! Тут ви можете пройти тести з різних мов програмування та оцінити свій рівень володіння ними.</p>
+        <a class='btn' href="https://olga-shutyleva.com/" target="_blank">Моє портфоліо</a>
+    </div>
+    <div class="content">
+        <nav class="navbar">
+            <ul class="flex">
+                <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <a [routerLink]="['']">Головна</a>
+                </li>
+                <li routerLinkActive="active">
+                    <a [routerLink]="['tests']">Тести</a>
+                </li>
+                <li routerLinkActive="active">
+                    <a [routerLink]="['about']">Про cайт</a>
+                </li>
+            </ul>
+        </nav>
+        <div class="content-site">
+            <router-outlet />
+
+        </div>
+    </div>
+</div>
